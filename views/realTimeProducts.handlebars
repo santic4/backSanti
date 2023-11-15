@@ -1,0 +1,49 @@
+<div style="max-width: 800px; margin: 0 auto;">
+    <div>
+        <h2>Cargar nuevo Producto</h2>
+        <br>
+        <div style="display: flex; margin-bottom: 10px;">
+            <input type="text" id="prodTitulo" style="flex: 1; margin-right: 5px; padding: 8px;" placeholder="Titulo Producto" aria-label="Titulo Producto">
+            <input type="text" id="prodDesc" style="flex: 1; margin-right: 5px; padding: 8px;" placeholder="Descripcion Producto" aria-label="Descripcion Producto">
+            <input type="text" id="prodCategoria" style="flex: 1; padding: 8px;" placeholder="Categoria Producto" aria-label="Categoria Producto">
+        </div>
+        <div style="display: flex; margin-bottom: 10px;">
+            <input type="text" id="prodCodigo" style="flex: 1; margin-right: 5px; padding: 8px;" placeholder="Codigo Producto" aria-label="Codigo Producto">
+            <input type="text" id="prodPrecio" style="flex: 1; margin-right: 5px; padding: 8px;" placeholder="Precio Producto" aria-label="Precio Producto">
+            <input type="text" id="prodStock" style="flex: 1; padding: 8px;" placeholder="Stock Producto" aria-label="Stock Producto">
+        </div>
+        <div style="text-align: center;">
+            <button type="submit" style="padding: 8px;">Agregar Producto</button>
+        </div>
+    </div>
+
+    <div>
+        <h2>Lista de Productos</h2>
+        <br>
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">ID</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">TITULO</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">DESCRIPCION</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">CODIGO</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">PRECIO</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">STOCK</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">CATEGORIA</th>
+                </tr>
+            </thead>
+            <tbody id="productsTable">
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                    <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                    <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                    <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                    <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                    <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                    <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="/static/js/script.js"></script>
