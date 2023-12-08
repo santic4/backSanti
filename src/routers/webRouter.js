@@ -1,13 +1,15 @@
 import { Router } from "express";
-import { pm } from "../main.js";
+
 export const webRouter = Router()
 
-webRouter.get('/', (req, res) => {
-    const productos = pm.getProducts()
-    res.render('main', { productos: productos })
-
+webRouter.get ('/', (req, res) => {
+    res.render ('index', {titulo: 'CoderHouse - Backend - Preentrega II'})
 })
 
-webRouter.get('/realtimeproducts', (req, res) => {
-    res.render('realTimeProducts', { titulo: 'Productos en Tiempo Real' })
+webRouter.get('/productos', (req, res) => {
+    res.render('productos')
+})
+
+webRouter.get('/carrito', (req, res) => {
+    res.render('carrito')
 })

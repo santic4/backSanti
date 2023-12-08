@@ -1,33 +1,21 @@
-import express from "express"
-import { engine } from "express-handlebars"
-import { PORT } from "./config.js"
-import { webRouter } from "./routers/webRouter.js"
-import { Server as IOServer } from "socket.io"
-import { ProductManager as PM } from "./ProductManager.js";
+import express from 'express'
+import { connect } from 'mongoose'
+import { PORT, MONGODB_CNX_STR } from './routers/config.js'
+import { apiRouter } from './routers/apirouter.js'
+import { webRouter } from './routers/webRouter.js'
+import { engine } from 'express-handlebars'
 
-export const pm = new PM 
-
-const app = express() 
-app.engine('handlebars', engine()) 
-
+const app = express()
+app.engine ('handlebars', engine())
 app.set('views', './views')
 app.set('view engine', 'handlebars')
-
 app.use('/static', express.static('./static'))
 
-app.use('/', webRouter) 
+await connect(MONGODB_CNX_STR)
+console.log(`Base de datos conectada en ${MONGODB_CNX_STR}`)
+app.use("/api", apiRouter)
+app.use('/', webRouter)
 
-const server = app.listen(PORT, () => { console.log(`Conectado al Puerto: ${PORT}`) })
-const ioServer = new IOServer(server)
-// Evento que escucha la conexion de un cliente
-ioServer.on('connection', (socket) => {
-    console.log('cliente conectado', socket.id);
-    socket.emit('actualizacion', { productos: pm.getProducts() }); // Actualiza la lista de productos al cliente
-
-    // Evento cuando un cliente agrega un producto
-    socket.on('agregarProducto', async (producto, callback) => {
-        const respuesta = await pm.addProduct(producto);
-        callback({ status: respuesta }); // Define un callback de respuesta para notificar al cliente el resultado de la petición
-        ioServer.sockets.emit('actualizacion', { productos: pm.getProducts() }); // actualiza en TODOS los clientes la lista de productos
-    });
-});
+app.listen(PORT, () => {
+    console.log (`Conectado al puerto ${PORT}`)
+})
